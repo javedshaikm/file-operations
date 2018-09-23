@@ -1,0 +1,31 @@
+import openpyxl
+from openpyxl.styles import colors
+from openpyxl.styles import Font, Color, PatternFill, Border
+from openpyxl import Workbook
+from openpyxl.cell import Cell
+
+yellowFill = PatternFill(start_color='00FFFF00',
+                   end_color='00FFFF00',
+                   fill_type='solid')
+
+def writeExcel():
+   book = openpyxl.load_workbook('C:\\Users\\shaikjav\\Desktop\\sample.xlsx')
+   #book.create_sheet('Sample Sheet')
+   #book.save('C:\\Users\\shaikjav\\Desktop\\sample.xlsx')
+   # Acquire a sheet by its name
+   sheet = book['january']
+   # Writing to sheet
+   sheet_a = sheet['A1']
+   sheet_b = sheet['B1']
+   sheet_a.value = 'Appended Data'
+   sheet_b.value = 'New Appended Data'
+   ft = Font(color=colors.RED, italic=True)
+   sheet_a.fill = yellowFill
+
+     
+   book.save('C:\\Users\\shaikjav\\Desktop\\sample.xlsx')
+
+
+if __name__ == '__main__':
+   writeExcel()
+
