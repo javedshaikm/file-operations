@@ -8,24 +8,24 @@ yellowFill = PatternFill(start_color='00FFFF00',
                    end_color='00FFFF00',
                    fill_type='solid')
 
-def writeExcel():
-   book = openpyxl.load_workbook('C:\\Users\\shaikjav\\Desktop\\sample.xlsx')
-   #book.create_sheet('Sample Sheet')
-   #book.save('C:\\Users\\shaikjav\\Desktop\\sample.xlsx')
-   # Acquire a sheet by its name
-   sheet = book['january']
-   # Writing to sheet
-   sheet_a = sheet['A1']
-   sheet_b = sheet['B1']
-   sheet_a.value = 'Appended Data'
-   sheet_b.value = 'New Appended Data'
-   ft = Font(color=colors.RED, italic=True)
-   sheet_a.fill = yellowFill
+def changeCellColor():
+   book = openpyxl.load_workbook('C:\\Users\\shaikjav\\Desktop\\Pending banner.xlsx')
+   txt = open('C:\\Users\\shaikjav\\Desktop\\Pending-banner.txt').read().splitlines()
 
-     
-   book.save('C:\\Users\\shaikjav\\Desktop\\sample.xlsx')
+    # Acquire a sheet by its name
+   sheet = book.active
+   # Writing to sheet
+
+   for row in sheet.iter_rows():
+        for cell in row:
+        	cellContent = str(cell.value)
+        	for lines in txt:
+        		if lines == cellContent:
+        			cell.fill = yellowFill
+            		#cellContent.fill = yellowFill
+
+   book.save('C:\\Users\\shaikjav\\Desktop\\Pending banner.xlsx')
 
 
 if __name__ == '__main__':
-   writeExcel()
-
+   changeCellColor()
